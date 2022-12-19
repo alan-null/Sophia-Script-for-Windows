@@ -6252,12 +6252,12 @@ function NetworkAdaptersSavePower
 		$Enable
 	)
 
-	if (Get-NetAdapter -Physical | Where-Object -FilterScript {$_.Status -eq "Up"})
+	if (Get-NetAdapter -Physical | Where-Object -FilterScript {($_.Status -eq "Up") -and $_.MacAddress})
 	{
-		$PhysicalAdaptersStatusUp = @((Get-NetAdapter -Physical | Where-Object -FilterScript {$_.Status -eq "Up"}).Name)
+		$PhysicalAdaptersStatusUp = @((Get-NetAdapter -Physical | Where-Object -FilterScript {($_.Status -eq "Up") -and $_.MacAddress}).Name)
 	}
 
-	$Adapters = Get-NetAdapter -Physical | Get-NetAdapterPowerManagement | Where-Object -FilterScript {$_.AllowComputerToTurnOffDevice -ne "Unsupported"}
+	$Adapters = Get-NetAdapter -Physical | Where-Object -FilterScript {$_.MacAddress} | Get-NetAdapterPowerManagement | Where-Object -FilterScript {$_.AllowComputerToTurnOffDevice -ne "Unsupported"}
 
 	switch ($PSCmdlet.ParameterSetName)
 	{
@@ -6285,7 +6285,7 @@ function NetworkAdaptersSavePower
 	{
 		while
 		(
-			Get-NetAdapter -Physical -Name $PhysicalAdaptersStatusUp | Where-Object -FilterScript {$_.Status -eq "Disconnected"}
+			Get-NetAdapter -Physical -Name $PhysicalAdaptersStatusUp | Where-Object -FilterScript {($_.Status -eq "Disconnected") -and $_.MacAddress}
 		)
 		{
 			Write-Verbose -Message $Localization.Patient -Verbose
@@ -9020,10 +9020,13 @@ public static void Refresh()
 function UninstallPCHealthCheck
 {
 	$Folder = (New-Object -ComObject Shell.Application).NameSpace("$env:SystemRoot\Installer")
+	$Files = [hashtable]::new()
+	$Folder.Items() | ForEach-Object -Process {$Files.Add($_.Name, $_)} | Out-Null
 	# Find the necessary .msi with the Subject property equal to "Windows PC Health Check"
 	foreach ($MSI in @(Get-ChildItem -Path "$env:SystemRoot\Installer" -Filter *.msi -File -Force))
 	{
-		$File = $Folder.Items() | Where-Object -FilterScript {$_.Name -eq $MSI.Name}
+		$Name = $Files.Keys | Where-Object -FilterScript {$_ -eq $MSI.Name}
+		$File = $Files[$Name]
 
 		# https://learn.microsoft.com/en-us/previous-versions/tn-archive/ee176615(v=technet.10)
 		# "22" is the "Subject" file property
@@ -10128,7 +10131,7 @@ function UninstallUWPApps
 		Write-Information -MessageData "" -InformationAction Continue
 		Write-Verbose -Message $Localization.Patient -Verbose
 
-		$AppxPackages = Get-AppxPackage -PackageTypeFilter Bundle -AllUsers:$AllUsers | Where-Object -FilterScript {$_.Name -notin $ExcludedAppxPackages}
+		$AppxPackages = @(Get-AppxPackage -PackageTypeFilter Bundle -AllUsers:$AllUsers | Where-Object -FilterScript {$_.Name -notin $ExcludedAppxPackages})
 		$PackagesIds = [Windows.Management.Deployment.PackageManager]::new().FindPackages() | Select-Object -Property DisplayName -ExpandProperty Id | Select-Object -Property Name, DisplayName
 
 		foreach ($AppxPackage in $AppxPackages)
@@ -10479,7 +10482,7 @@ function RestoreUWPApps
 
 		# You cannot retrieve packages using -PackageTypeFilter Bundle, otherwise you won't get the InstallLocation attribute. It can be retrieved only by comparing with $Bundles
 		$Bundles = (Get-AppXPackage -PackageTypeFilter Bundle -AllUsers).Name
-		$AppxPackages = Get-AppxPackage -AllUsers | Where-Object -FilterScript {$_.PackageUserInformation -match "Staged"} | Where-Object -FilterScript {$_.Name -in $Bundles}
+		$AppxPackages = @(Get-AppxPackage -AllUsers | Where-Object -FilterScript {$_.PackageUserInformation -match "Staged"} | Where-Object -FilterScript {$_.Name -in $Bundles})
 		$PackagesIds = [Windows.Management.Deployment.PackageManager]::new().FindPackages() | Select-Object -Property DisplayName -ExpandProperty Id | Select-Object -Property Name, DisplayName
 
 		foreach ($AppxPackage in $AppxPackages)
@@ -13621,6 +13624,10 @@ function UpdateLGPEPolicies
 		return
 	}
 
+	Get-Partition | Where-Object -FilterScript{$_. DriveLetter -eq "C"} | Get-Disk | Get-PhysicalDisk | ForEach-Object -Process {
+		Write-Verbose -Message ([string]($_.FriendlyName, '|', $_.MediaType, '|', $_.BusType)) -Verbose
+	}
+
 	Write-Verbose -Message $Localization.Patient -Verbose
 	Write-Verbose -Message $Localization.GPOUpdate -Verbose
 	Write-Verbose -Message HKLM -Verbose
@@ -13830,8 +13837,8 @@ public static void PostMessage()
 	# Determines whether the app can be seen in Settings where the user can turn notifications on or off
 	New-ItemProperty -Path Registry::HKEY_CLASSES_ROOT\AppUserModelId\Sophia -Name ShowInSettings -Value 0 -PropertyType DWord -Force
 
-	[Windows.UI.Notifications.ToastNotificationManager, Windows.UI.Notifications, ContentType = WindowsRuntime] | Out-Null
-	[Windows.Data.Xml.Dom.XmlDocument, Windows.Data.Xml.Dom.XmlDocument, ContentType = WindowsRuntime] | Out-Null
+	Add-Type -AssemblyName "$PSScriptRoot\..\bin\WinRT.Runtime.dll"
+	Add-Type -AssemblyName "$PSScriptRoot\..\bin\Microsoft.Windows.SDK.NET.dll"
 
 	# Telegram group
 	[xml]$ToastTemplate = @"

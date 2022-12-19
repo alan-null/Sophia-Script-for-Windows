@@ -273,14 +273,13 @@ function Checks
 	# Checking services
 	try
 	{
-		$Services = Get-Service -Name Windefend, SecurityHealthService, wscsvc -ErrorAction Stop
+		$services = Get-Service -Name Windefend, SecurityHealthService, wscsvc -ErrorAction Stop
 	}
-	catch [Microsoft.PowerShell.Commands.ServiceCommandException]
-	{
+	catch [Microsoft.PowerShell.Commands.ServiceCommandException] {
 		$Localization.WindowsBroken
 		exit
 	}
-	[array]$notRunning = $Services | Where-Object -FilterScript {$_.Status -ne "running"}
+	[array]$notRunning = $services | Where-Object -FilterScript {$_.Status -ne "running"}
 	$Script:DefenderServices = $notRunning.Count -eq 0
 
 	# Specifies whether Antispyware protection is enabled
@@ -5337,12 +5336,12 @@ function NetworkAdaptersSavePower
 		$Enable
 	)
 
-	if (Get-NetAdapter -Physical | Where-Object -FilterScript {$_.Status -eq "Up"})
+	if (Get-NetAdapter -Physical | Where-Object -FilterScript {($_.Status -eq "Up") -and $_.MacAddress})
 	{
-		$PhysicalAdaptersStatusUp = @((Get-NetAdapter -Physical | Where-Object -FilterScript {$_.Status -eq "Up"}).Name)
+		$PhysicalAdaptersStatusUp = @((Get-NetAdapter -Physical | Where-Object -FilterScript {($_.Status -eq "Up") -and $_.MacAddress}).Name)
 	}
 
-	$Adapters = Get-NetAdapter -Physical | Get-NetAdapterPowerManagement | Where-Object -FilterScript {$_.AllowComputerToTurnOffDevice -ne "Unsupported"}
+	$Adapters = Get-NetAdapter -Physical | Where-Object -FilterScript {$_.MacAddress} | Get-NetAdapterPowerManagement | Where-Object -FilterScript {$_.AllowComputerToTurnOffDevice -ne "Unsupported"}
 
 	switch ($PSCmdlet.ParameterSetName)
 	{
@@ -5370,7 +5369,7 @@ function NetworkAdaptersSavePower
 	{
 		while
 		(
-			Get-NetAdapter -Physical -Name $PhysicalAdaptersStatusUp | Where-Object -FilterScript {$_.Status -eq "Disconnected"}
+			Get-NetAdapter -Physical -Name $PhysicalAdaptersStatusUp | Where-Object -FilterScript {($_.Status -eq "Disconnected") -and $_.MacAddress}
 		)
 		{
 			Write-Verbose -Message $Localization.Patient -Verbose
@@ -11234,6 +11233,10 @@ function UpdateLGPEPolicies
 	if (-not (Test-Path -Path "$env:SystemRoot\System32\gpedit.msc"))
 	{
 		return
+	}
+
+	Get-Partition | Where-Object -FilterScript{$_. DriveLetter -eq "C"} | Get-Disk | Get-PhysicalDisk | ForEach-Object -Process {
+		Write-Verbose -Message ([string]($_.FriendlyName, '|', $_.MediaType, '|', $_.BusType)) -Verbose
 	}
 
 	Write-Verbose -Message $Localization.Patient -Verbose

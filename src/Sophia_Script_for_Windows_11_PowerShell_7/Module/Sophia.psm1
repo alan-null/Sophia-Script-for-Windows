@@ -300,13 +300,14 @@ function Checks
 	# Checking services
 	try
 	{
-		$services = Get-Service -Name Windefend, SecurityHealthService, wscsvc -ErrorAction Stop
+		$Services = Get-Service -Name Windefend, SecurityHealthService, wscsvc -ErrorAction Stop
 	}
-	catch [Microsoft.PowerShell.Commands.ServiceCommandException] {
+	catch [Microsoft.PowerShell.Commands.ServiceCommandException]
+	{
 		$Localization.WindowsBroken
 		exit
 	}
-	[array]$notRunning = $services | Where-Object -FilterScript {$_.Status -ne "running"}
+	[array]$notRunning = $Services | Where-Object -FilterScript {$_.Status -ne "running"}
 	$Script:DefenderServices = $notRunning.Count -eq 0
 
 	# Specifies whether Antispyware protection is enabled
@@ -5723,12 +5724,12 @@ function NetworkAdaptersSavePower
 		$Enable
 	)
 
-	if (Get-NetAdapter -Physical | Where-Object -FilterScript {($_.Status -eq "Up") -and $_.MacAddress})
+	if (Get-NetAdapter -Physical | Where-Object -FilterScript {$_.Status -eq "Up"})
 	{
-		$PhysicalAdaptersStatusUp = @((Get-NetAdapter -Physical | Where-Object -FilterScript {($_.Status -eq "Up") -and $_.MacAddress}).Name)
+		$PhysicalAdaptersStatusUp = @((Get-NetAdapter -Physical | Where-Object -FilterScript {$_.Status -eq "Up"}).Name)
 	}
 
-	$Adapters = Get-NetAdapter -Physical | Where-Object -FilterScript {$_.MacAddress} | Get-NetAdapterPowerManagement | Where-Object -FilterScript {$_.AllowComputerToTurnOffDevice -ne "Unsupported"}
+	$Adapters = Get-NetAdapter -Physical | Get-NetAdapterPowerManagement | Where-Object -FilterScript {$_.AllowComputerToTurnOffDevice -ne "Unsupported"}
 
 	switch ($PSCmdlet.ParameterSetName)
 	{
@@ -5756,7 +5757,7 @@ function NetworkAdaptersSavePower
 	{
 		while
 		(
-			Get-NetAdapter -Physical -Name $PhysicalAdaptersStatusUp | Where-Object -FilterScript {($_.Status -eq "Disconnected") -and $_.MacAddress}
+			Get-NetAdapter -Physical -Name $PhysicalAdaptersStatusUp | Where-Object -FilterScript {$_.Status -eq "Disconnected"}
 		)
 		{
 			Write-Verbose -Message $Localization.Patient -Verbose
@@ -9529,7 +9530,7 @@ function UninstallUWPApps
 			$AppxPackages += Get-AppxPackage -Name SpotifyAB.SpotifyMusic -AllUsers:$AllUsers | Select-Object -Index 0
 		}
 
-		$PackagesIds = [Windows.Management.Deployment.PackageManager]::new().FindPackages() | Select-Object -Property DisplayName -ExpandProperty Id | Select-Object -Property Name, DisplayName
+		$PackagesIds = [Windows.Management.Deployment.PackageManager, Windows.Web, ContentType = WindowsRuntime]::new().FindPackages() | Select-Object -Property DisplayName -ExpandProperty Id | Select-Object -Property Name, DisplayName
 
 		foreach ($AppxPackage in $AppxPackages)
 		{
@@ -12966,10 +12967,6 @@ function UpdateLGPEPolicies
 		return
 	}
 
-	Get-Partition | Where-Object -FilterScript{$_. DriveLetter -eq "C"} | Get-Disk | Get-PhysicalDisk | ForEach-Object -Process {
-		Write-Verbose -Message ([string]($_.FriendlyName, '|', $_.MediaType, '|', $_.BusType)) -Verbose
-	}
-
 	Write-Verbose -Message $Localization.Patient -Verbose
 	Write-Verbose -Message $Localization.GPOUpdate -Verbose
 	Write-Verbose -Message HKLM -Verbose
@@ -13185,8 +13182,8 @@ public static void PostMessage()
 	# Determines whether the app can be seen in Settings where the user can turn notifications on or off
 	New-ItemProperty -Path Registry::HKEY_CLASSES_ROOT\AppUserModelId\Sophia -Name ShowInSettings -Value 0 -PropertyType DWord -Force
 
-	Add-Type -AssemblyName "$PSScriptRoot\..\bin\WinRT.Runtime.dll"
-	Add-Type -AssemblyName "$PSScriptRoot\..\bin\Microsoft.Windows.SDK.NET.dll"
+	[Windows.UI.Notifications.ToastNotificationManager, Windows.UI.Notifications, ContentType = WindowsRuntime] | Out-Null
+	[Windows.Data.Xml.Dom.XmlDocument, Windows.Data.Xml.Dom.XmlDocument, ContentType = WindowsRuntime] | Out-Null
 
 	# Telegram group
 	[xml]$ToastTemplate = @"

@@ -125,7 +125,7 @@ Checks -Warning
 
 # Create a restore point
 # Создать точку восстановления
-CreateRestorePoint
+# CreateRestorePoint
 #endregion Protection
 
 #region Privacy & Telemetry
@@ -258,7 +258,7 @@ BingSearch -Disable
 #region UI & Personalization
 # Show the "This PC" icon on Desktop
 # Отобразить значок "Этот компьютер" на рабочем столе
-ThisPC -Show
+# ThisPC -Show
 
 # Hide the "This PC" icon on Desktop (default value)
 # Скрыть "Этот компьютер" на рабочем столе (значение по умолчанию)
@@ -414,7 +414,7 @@ PeopleTaskbar -Hide
 
 # Show seconds on the taskbar clock
 # Отобразить секунды в системных часах на панели задач
-SecondsInSystemClock -Show
+# SecondsInSystemClock -Show
 
 # Hide seconds on the taskbar clock (default value)
 # Скрыть секунды в системных часах на панели задач (значение по умолчанию)
@@ -430,7 +430,7 @@ WindowsInkWorkspace -Hide
 
 # Always show all icons in the notification area
 # Всегда отображать все значки в области уведомлений
-NotificationAreaIcons -Show
+# NotificationAreaIcons -Show
 
 # Hide all icons in the notification area (default value)
 # Скрыть все значки в области уведомлений (значение по умолчанию)
@@ -454,7 +454,7 @@ NewsInterests -Disable
 
 # Unpin the "Microsoft Edge", "Microsoft Store", or "Mail" shortcuts from the taskbar
 # Открепить ярлыки "Microsoft Edge", "Microsoft Store" или "Почта" от панели задач
-UnpinTaskbarShortcuts -Shortcuts Edge, Store, Mail
+# UnpinTaskbarShortcuts -Shortcuts Edge, Store, Mail
 
 # View the Control Panel icons by large icons
 # Просмотр иконок Панели управления как: крупные значки
@@ -470,7 +470,7 @@ ControlPanelView -LargeIcons
 
 # Set the default Windows mode to dark
 # Установить режим Windows по умолчанию на темный
-WindowsColorMode -Dark
+# WindowsColorMode -Dark
 
 # Set the default Windows mode to light (default value)
 # Установить режим Windows по умолчанию на светлый (значение по умолчанию)
@@ -478,7 +478,7 @@ WindowsColorMode -Dark
 
 # Set the default app mode to dark
 # Установить цвет режима приложения на темный
-AppColorMode -Dark
+# AppColorMode -Dark
 
 # Set the default app mode to light (default value)
 # Установить цвет режима приложения на светлый (значение по умолчанию)
@@ -502,7 +502,7 @@ FirstLogonAnimation -Disable
 
 # Set the quality factor of the JPEG desktop wallpapers to maximum
 # Установить коэффициент качества обоев рабочего стола в формате JPEG на максимальный
-JPEGWallpapersQuality -Max
+# JPEGWallpapersQuality -Max
 
 # Set the quality factor of the JPEG desktop wallpapers to default
 # Установить коэффициент качества обоев рабочего стола в формате JPEG по умолчанию
@@ -510,7 +510,7 @@ JPEGWallpapersQuality -Max
 
 # Start Task Manager in the expanded mode
 # Запускать Диспетчера задач в развернутом виде
-TaskManagerWindow -Expanded
+# TaskManagerWindow -Expanded
 
 # Start Task Manager in the compact mode (default value)
 # Запускать Диспетчера задач в свернутом виде (значение по умолчанию)
@@ -534,7 +534,7 @@ ShortcutsSuffix -Disable
 
 # Use the Print screen button to open screen snipping
 # Использовать кнопку PRINT SCREEN, чтобы запустить функцию создания фрагмента экрана
-PrtScnSnippingTool -Enable
+# PrtScnSnippingTool -Enable
 
 # Do not use the Print screen button to open screen snipping (default value)
 # Не использовать кнопку PRINT SCREEN, чтобы запустить функцию создания фрагмента экрана (значение по умолчанию)
@@ -542,7 +542,7 @@ PrtScnSnippingTool -Enable
 
 # Let me use a different input method for each app window
 # Позволить выбирать метод ввода для каждого окна
-AppsLanguageSwitch -Enable
+# AppsLanguageSwitch -Enable
 
 # Do not use a different input method for each app window (default value)
 # Не использовать метод ввода для каждого окна (значение по умолчанию)
@@ -550,15 +550,15 @@ AppsLanguageSwitch -Enable
 
 # When I grab a windows's title bar and shake it, minimize all other windows (default value)
 # При захвате заголовка окна и встряхивании сворачиваются все остальные окна (значение по умолчанию)
-AeroShaking -Enable
+# AeroShaking -Enable
 
 # When I grab a windows's title bar and shake it, don't minimize all other windows
 # При захвате заголовка окна и встряхивании не сворачиваются все остальные окна
-# AeroShaking -Disable
+AeroShaking -Disable
 
 # Download and install free dark "Windows 11 Cursors Concept v2" cursors from Jepri Creations
 # Скачать и установить бесплатные темные курсоры "Windows 11 Cursors Concept v2" от Jepri Creations
-Cursors -Dark
+# Cursors -Dark
 
 # Download and install free light "Windows 11 Cursors Concept v2" cursors from Jepri Creations
 # Скачать и установить бесплатные светлые курсоры "Windows 11 Cursors Concept v2" от Jepri Creations
@@ -608,7 +608,7 @@ StorageSenseTempFiles -Enable
 
 # Disable hibernation. Do not recommend turning it off on laptops
 # Отключить режим гибернации. Не рекомендуется выключать на ноутбуках
-Hibernation -Disable
+# Hibernation -Disable
 
 # Enable hibernate (default value)
 # Включить режим гибернации (значение по умолчанию)
@@ -640,7 +640,7 @@ BSoDStopError -Enable
 
 # Choose when to be notified about changes to your computer: never notify
 # Настройка уведомления об изменении параметров компьютера: никогда не уведомлять
-AdminApprovalMode -Never
+# AdminApprovalMode -Never
 
 # Choose when to be notified about changes to your computer: notify me only when apps try to make changes to my computer (default value)
 # Настройка уведомления об изменении параметров компьютера: уведомлять меня только при попытках приложений внести изменения в компьютер (значение по умолчанию)
@@ -648,7 +648,7 @@ AdminApprovalMode -Never
 
 # Turn on access to mapped drives from app running with elevated permissions with Admin Approval Mode enabled
 # Включить доступ к сетевым дискам при включенном режиме одобрения администратором при доступе из программ, запущенных с повышенными правами
-MappedDrivesAppElevatedAccess -Enable
+# MappedDrivesAppElevatedAccess -Enable
 
 # Turn off access to mapped drives from app running with elevated permissions with Admin Approval Mode enabled (default value)
 # Выключить доступ к сетевым дискам при включенном режиме одобрения администратором при доступе из программ, запущенных с повышенными правами (значение по умолчанию)
@@ -664,7 +664,7 @@ DeliveryOptimization -Disable
 
 # Always wait for the network at computer startup and logon for workgroup networks
 # Всегда ждать сеть при запуске и входе в систему для рабочих групп
-WaitNetworkStartup -Enable
+# WaitNetworkStartup -Enable
 
 # Never wait for the network at computer startup and logon for workgroup networks (default value)
 # Никогда не ждать сеть при запуске и входе в систему для рабочих групп (значение по умолчанию)
@@ -748,7 +748,7 @@ NetworkAdaptersSavePower -Disable
 	Выключить IP версии 6 (TCP/IPv6)
 	Перед выполнением функции будет проведена проверка: поддерживает ли ваш провайдер IPv6, используя ресурс https://ipv6-test.com
 #>
-IPv6Component -Disable
+# IPv6Component -Disable
 
 <#
 	Enable the Internet Protocol Version 6 (TCP/IPv6) component for all network connections (default value)
@@ -761,7 +761,7 @@ IPv6Component -Disable
 
 # Override for default input method: English
 # Переопределить метод ввода по умолчанию: английский
-InputMethod -English
+# InputMethod -English
 
 # Override for default input method: use language list (default value)
 # Переопределить метод ввода по умолчанию: использовать список языков (значение по умолчанию)
@@ -776,7 +776,7 @@ InputMethod -English
 	Пользовательские файлы и папки не будут перемещены в новое расположение. Переместите их вручную
 	По умолчанию они располагаются в папке %USERPROFILE%
 #>
-SetUserShellFolderLocation -Root
+# SetUserShellFolderLocation -Root
 
 <#
 	Select folders for user folders location manually using a folder browser dialog
@@ -809,7 +809,7 @@ SetUserShellFolderLocation -Root
 	Функция будет применена только в случае, если в пресете настроено удаление приложения OneDrive или приложение уже удалено,
 	иначе в OneDrive ломается функционал резервного копирования для папок "Рабочий стол" и "Изображения"
 #>
-WinPrtScrFolder -Desktop
+# WinPrtScrFolder -Desktop
 
 # Save screenshots by pressing Win+PrtScr in the Pictures folder (default value)
 # Cохранять скриншоты по нажатию Win+PrtScr в папку "Изображения" (значение по умолчанию)
@@ -822,7 +822,7 @@ WinPrtScrFolder -Desktop
 	Автоматически запускать средства устранения неполадок, а затем уведомлять
 	Чтобы заработала данная функция, уровень сбора диагностических данных ОС будет установлен на "Необязательные диагностические данные" и включится создание отчетов об ошибках Windows
 #>
-RecommendedTroubleshooting -Automatically
+# RecommendedTroubleshooting -Automatically
 
 <#
 	Ask me before running troubleshooter (default value)
@@ -859,7 +859,7 @@ F1HelpPage -Disable
 
 # Enable Num Lock at startup
 # Включить Num Lock при загрузке
-NumLock -Enable
+# NumLock -Enable
 
 # Disable Num Lock at startup (default value)
 # Выключить Num Lock при загрузке (значение по умолчанию)
@@ -899,7 +899,7 @@ ThumbnailCacheRemoval -Disable
 
 # Automatically saving my restartable apps when signing out and restart them after signing in
 # Автоматически сохранять мои перезапускаемые приложения при выходе из системы и перезапускать их при повторном входе
-SaveRestartableApps -Enable
+# SaveRestartableApps -Enable
 
 # Turn off automatically saving my restartable apps when signing out and restart them after signing in (default value)
 # Выключить автоматическое сохранение моих перезапускаемых приложений при выходе из системы и перезапускать их после выхода (значение по умолчанию)
@@ -907,7 +907,7 @@ SaveRestartableApps -Enable
 
 # Enable "Network Discovery" and "File and Printers Sharing" for workgroup networks
 # Включить сетевое обнаружение и общий доступ к файлам и принтерам для рабочих групп
-NetworkDiscovery -Enable
+# NetworkDiscovery -Enable
 
 # Disable "Network Discovery" and "File and Printers Sharing" for workgroup networks (default value)
 # Выключить сетевое обнаружение и общий доступ к файлам и принтерам для рабочих групп (значение по умолчанию)
@@ -955,7 +955,7 @@ UninstallPCHealthCheck
 
 	https://docs.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist
 #>
-InstallVCRedist
+# InstallVCRedist
 
 <#
 	Install the latest .NET Desktop Runtime 7 (x86/x64)
@@ -963,12 +963,12 @@ InstallVCRedist
 
 	https://dotnet.microsoft.com/en-us/download/dotnet
 #>
-InstallDotNetRuntime7
+# InstallDotNetRuntime7
 
 # Enable proxying only blocked sites from the unified registry of Roskomnadzor. The function is applicable for Russia only
 # Включить проксирование только заблокированных сайтов из единого реестра Роскомнадзора. Функция применима только для России
 # https://antizapret.prostovpn.org
-RKNBypass -Enable
+# RKNBypass -Enable
 
 # Disable proxying only blocked sites from the unified registry of Roskomnadzor (default value)
 # Выключить проксирование только заблокированных сайтов из единого реестра Роскомнадзора (значение по умолчанию)
@@ -990,7 +990,7 @@ RKNBypass -Enable
 #region Start menu
 # Hide recently added apps in the Start menu
 # Скрывать недавно добавленные приложения в меню "Пуск"
-RecentlyAddedApps -Hide
+# RecentlyAddedApps -Hide
 
 # Show recently added apps in the Start menu (default value)
 # Показывать недавно добавленные приложения в меню "Пуск" (значение по умолчанию)
@@ -1006,7 +1006,7 @@ AppSuggestions -Hide
 
 # Run the Windows PowerShell shortcut from the Start menu as Administrator
 # Запускать ярлык Windows PowerShell в меню "Пуск" от имени Администратора
-RunPowerShellShortcut -Elevated
+# RunPowerShellShortcut -Elevated
 
 # Run the Windows PowerShell shortcut from the Start menu as user (default value)
 # Запускать ярлык Windows PowerShell в меню "Пуск" от имени пользователя (значение по умолчанию)
@@ -1019,7 +1019,7 @@ RunPowerShellShortcut -Elevated
 	Закрепить на начальном экране следующие ярлыки: Панель управления, Устройства и принтеры, PowerShell
 	Валидные значения ярлыков: ControlPanel, DevicesPrinters, PowerShell
 #>
-PinToStart -Tiles ControlPanel, DevicesPrinters, PowerShell
+# PinToStart -Tiles ControlPanel, DevicesPrinters, PowerShell
 
 # Unpin all tiles first and pin necessary ones
 # Открепить все ярлыки сначала и закрепить необходимые
@@ -1053,7 +1053,7 @@ UninstallUWPApps
 
 # Download and install "HEVC Video Extensions from Device Manufacturer" to be able to open .heic and .heif formats
 # Скачать и установить "Расширения для видео HEVC от производителя устройства", чтобы иметь возможность открывать форматы .heic и .heif
-HEIF -Install
+# HEIF -Install
 
 <#
 	Open Microsoft Store "HEVC Video Extensions from Device Manufacturer" page to install this extension manually to be able to open .heic and .heif formats
@@ -1109,7 +1109,7 @@ XboxGameTips -Disable
 
 # Choose an app and set the "High performance" graphics performance for it. Only if you have a dedicated GPU
 # Выбрать приложение и установить для него параметры производительности графики на "Высокая производительность". Только при наличии внешней видеокарты
-SetAppGraphicsPerformance
+# SetAppGraphicsPerformance
 
 <#
 	Turn on hardware-accelerated GPU scheduling. Restart needed
@@ -1118,7 +1118,7 @@ SetAppGraphicsPerformance
 	Включить планирование графического процессора с аппаратным ускорением. Необходима перезагрузка
 	Только при наличии внешней видеокарты и WDDM версии 2.7 и выше
 #>
-GPUScheduling -Enable
+# GPUScheduling -Enable
 
 # Turn off hardware-accelerated GPU scheduling (default value). Restart needed
 # Выключить планирование графического процессора с аппаратным ускорением (значение по умолчанию). Необходима перезагрузка
@@ -1198,11 +1198,11 @@ DefenderSandbox -Enable
 
 # Dismiss Microsoft Defender offer in the Windows Security about signing in Microsoft account
 # Отклонить предложение Microsoft Defender в "Безопасность Windows" о входе в аккаунт Microsoft
-DismissMSAccount
+# DismissMSAccount
 
 # Dismiss Microsoft Defender offer in the Windows Security about turning on the SmartScreen filter for Microsoft Edge
 # Отклонить предложение Microsoft Defender в "Безопасность Windows" включить фильтр SmartScreen для Microsoft Edge
-DismissSmartScreenFilter
+# DismissSmartScreenFilter
 
 # Enable events auditing generated when a process is created (starts)
 # Включить аудит событий, возникающих при создании или запуске процесса
@@ -1254,9 +1254,9 @@ PowerShellScriptsLogging -Enable
 # Выключить ведение журнала для всех вводимых сценариев PowerShell в журнале событий Windows PowerShell (значение по умолчанию)
 # PowerShellScriptsLogging -Disable
 
-# Microsoft Defender SmartScreen doesn't marks downloaded files from the Internet as unsafe
+# Microsoft Defender SmartScreen doesn't mark downloaded files from the Internet as unsafe
 # Microsoft Defender SmartScreen не помечает скачанные файлы из интернета как небезопасные
-AppsSmartScreen -Disable
+# AppsSmartScreen -Disable
 
 # Microsoft Defender SmartScreen marks downloaded files from the Internet as unsafe (default value)
 # Microsoft Defender SmartScreen помечает скачанные файлы из интернета как небезопасные (значение по умолчанию)
@@ -1264,7 +1264,7 @@ AppsSmartScreen -Disable
 
 # Disable the Attachment Manager marking files that have been downloaded from the Internet as unsafe
 # Выключить проверку Диспетчером вложений файлов, скачанных из интернета, как небезопасные
-SaveZoneInformation -Disable
+# SaveZoneInformation -Disable
 
 # Enable the Attachment Manager marking files that have been downloaded from the Internet as unsafe (default value)
 # Включить проверку Диспетчера вложений файлов, скачанных из интернета как небезопасные (значение по умолчанию)
@@ -1295,7 +1295,7 @@ SaveZoneInformation -Disable
 #region Context menu
 # Show the "Extract all" item in the Windows Installer (.msi) context menu
 # Отобразить пункт "Извлечь все" в контекстное меню Windows Installer (.msi)
-MSIExtractContext -Show
+# MSIExtractContext -Show
 
 # Hide the "Extract all" item from the Windows Installer (.msi) context menu (default value)
 # Скрыть пункт "Извлечь все" из контекстного меню Windows Installer (.msi) (значение по умолчанию)
@@ -1303,7 +1303,7 @@ MSIExtractContext -Show
 
 # Show the "Install" item in the Cabinet (.cab) filenames extensions context menu
 # Отобразить пункт "Установить" в контекстное меню .cab архивов
-CABInstallContext -Show
+# CABInstallContext -Show
 
 # Hide the "Install" item from the Cabinet (.cab) filenames extensions context menu (default value)
 # Скрыть пункт "Установить" из контекстного меню .cab архивов (значение по умолчанию)
@@ -1311,7 +1311,7 @@ CABInstallContext -Show
 
 # Show the "Run as different user" item to the .exe filename extensions context menu
 # Отобразить пункт "Запуск от имени другого пользователя" в контекстное меню .exe файлов
-RunAsDifferentUserContext -Show
+# RunAsDifferentUserContext -Show
 
 # Hide the "Run as different user" item from the .exe filename extensions context menu (default value)
 # Скрыть пункт "Запуск от имени другого пользователя" из контекстное меню .exe файлов (значение по умолчанию)
@@ -1319,7 +1319,7 @@ RunAsDifferentUserContext -Show
 
 # Hide the "Cast to Device" item from the media files and folders context menu
 # Скрыть пункт "Передать на устройство" из контекстного меню медиа-файлов и папок
-CastToDeviceContext -Hide
+# CastToDeviceContext -Hide
 
 # Show the "Cast to Device" item in the media files and folders context menu (default value)
 # Отобразить пункт "Передать на устройство" в контекстном меню медиа-файлов и папок (значение по умолчанию)
@@ -1359,7 +1359,7 @@ CreateANewVideoContext -Hide
 
 # Hide the "Edit" item from the images context menu
 # Скрыть пункт "Изменить" из контекстного меню изображений
-ImagesEditContext -Hide
+# ImagesEditContext -Hide
 
 # Show the "Edit" item in images context menu (default value)
 # Отобразить пункт "Изменить" в контекстном меню изображений (значение по умолчанию)
@@ -1423,7 +1423,7 @@ MultipleInvokeContext -Enable
 
 # Hide the "Look for an app in the Microsoft Store" item in the "Open with" dialog
 # Скрыть пункт "Поиск приложения в Microsoft Store" в диалоге "Открыть с помощью"
-UseStoreOpenWith -Hide
+# UseStoreOpenWith -Hide
 
 # Show the "Look for an app in the Microsoft Store" item in the "Open with" dialog (default value)
 # Отобразить пункт "Поиск приложения в Microsoft Store" в диалоге "Открыть с помощью" (значение по умолчанию)
